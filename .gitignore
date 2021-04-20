@@ -1,0 +1,6 @@
+# created by virtualenv automatically
+include/
+Lib/
+copigram/__pycache__/
+scripts/
+posts/__pycache__/

@@ -4,3 +4,7 @@ Lib/
 copigram/__pycache__/
 scripts/
 posts/__pycache__/
+copigram/settings.py
+posts/photos
+users/pictures
+static/img/

@@ -14,13 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls.static import static
 from django.urls import path
 from copigram import views as local_views
 from posts import views as posts_views
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello-world/', local_views.hello_world),
     path('numeros/',local_views.lista_ordenada),
     path('saludar/<str:name>/', local_views.saludar),
     path('posts/',posts_views.list_posts),
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) 

@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!--<DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
@@ -15,9 +15,9 @@
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body>-->
     <!--Header -->
-    <nav id="header" class="navbar navbar-expand navbar-light bg-light fixed-top" role="navigation">
+    <!--<nav id="header" class="navbar navbar-expand navbar-light bg-light fixed-top" role="navigation">
       <div class="container">
         <a class="navbar-brand" href="#">
           <img src="https://img.icons8.com/plasticine/100/000000/camera--v1.png"/>
@@ -42,29 +42,36 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav>-->
     <!--/Header-->
     <!--Main-->
-    <br><br>
-    <div class="container mt-5" id="main">
-        <div class="row">
-            {% for post in posts %}
-            <div class="col-12 col-md-6 offset-md-3 mb-4">
-                <div class="media">
-                    <img class="mr-3 rounded-circle" src="{{post.user.picture}}" alt="{{post.user.name}}"/>
-                    <div class="media-body">
-                        <h5 class="mt-0">{{post.user.name}}</h5>
-                        {{post.timestamp}}
-                    </div>
+    <!--<br><br>
+    <div class="container mt-5" id="main">-->
+{% extends 'base.html' %}
+
+{% block head_content %}
+<title>Copigram</title>
+{% endblock %}
+{% block container %}
+    <div class="row" id="user-post">
+        {% for post in posts %}
+        <div class="col-12 col-md-6 offset-md-3 mb-4">
+            <div class="media" style="margin-top:4rem">
+                <img class="mr-3 rounded-circle" src="{{post.user.picture}}" alt="{{post.user.name}}"/>
+                <div class="media-body">
+                    <h5 class="mt-0">{{post.user.name}}</h5>
+                    {{post.timestamp}}
                 </div>
-                <img id="publicaion" class="img-fluid mt-3 border rounded" src="{{post.photo}}" alt="{{post.title}}"/>
-                <h6 class="ml-l mt-l">{{post.title}}</h6> 
             </div>
-            {% endfor %}
+            <img id="publicaion" class="img-fluid mt-3 border rounded" src="{{post.photo}}" alt="{{post.title}}" style="width:100%; height:300px"/>
+            <h6 class="ml-l mt-l">{{post.title}}</h6> 
         </div>
+        {% endfor %}
     </div>
-    <!--/Main-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}
+    <!--</div>-->
+    <!--/Main-->
+<!--</body>
+</html>-->
  

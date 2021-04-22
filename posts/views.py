@@ -33,4 +33,4 @@ publicaciones=[
     }
 ]
 def list_posts(request): 
-    return render(request,'feed.html',{'posts': publicaciones})
+    return render(request,'posts/feed.html',{'posts': publicaciones})

@@ -18,12 +18,14 @@ from django.conf.urls.static import static
 from django.urls import path
 from copigram import views as local_views
 from posts import views as posts_views
+from users import views as user_views
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello-world/', local_views.hello_world),
-    path('numeros/',local_views.lista_ordenada),
-    path('saludar/<str:name>/', local_views.saludar),
-    path('posts/',posts_views.list_posts),
+    path('hello-world/', local_views.hello_world, name='hello_world'),
+    path('numeros/',local_views.lista_ordenada, name='sort'),
+    path('saludar/<str:name>/', local_views.saludar,name='hi'),
+    path('posts/',posts_views.list_posts,name='feed'),
+    path('users/login/',user_views.login_view,name='login'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) 

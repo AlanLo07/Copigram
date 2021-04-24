@@ -1,0 +1,31 @@
+{% extends "users/base.html" %}
+{% block head_content %}
+<title>Copigram Sign Up</title>
+{%endblock%}
+{% block container %}
+    <form method="post" action="{% url "signup" %}" class="row g-3">
+        {% csrf_token %}
+        <div class="col-sm-6 col-12 p-2">
+            <input type="text" placeholder="First name" name="first_name" class="form-control form-control" style="border-radius:1.5rem; background-color: rgba(52,199,182,.2);" required="true" />
+        </div>
+        <div class="col-sm-6 col-12 p-2">
+            <input type="text" placeholder="Last name" name="last_name" class="form-control form-control" style="border-radius:1.5rem; background-color: rgba(52,199,182,.2);" required="true" />
+        </div>
+        <div class="col-sm-6 col-12 p-2">
+            <input type="text" placeholder="Username" name="username" class="form-control" style="border-radius:1.5rem; background-color: rgba(52,199,182,.2);" required="true" />
+        </div>
+        <div class="col-sm-6 col-12 p-2">
+            <input type="email" placeholder="Email addres" name="email" class="form-control form-control" style="border-radius:1.5rem; background-color: rgba(52,199,182,.2);" required="true" />
+        </div>
+        <div class="col-sm-6 col-12 p-2">
+            <input type="password" placeholder="Password" name="password" class="form-control" style="border-radius:1.5rem; background-color: rgba(52,199,182,.2);" required="true" />
+        </div>
+        <div class="col-sm-6 col-12 p-2">
+            <input type="password" placeholder="Repeat password" name="password_confirmation" class="form-control form-control" style="border-radius:1.5rem; background-color: rgba(52,199,182,.2);" required="true" />
+        </div>
+        <button type="submit" class="btn btn-primary w-50 my-2 ml-2 btn-lg" style="border-radius:1.5rem">Sig up</button>
+    </form>
+    {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+    {%endif%}
+{% endblock %}

@@ -8,3 +8,4 @@ copigram/settings.py
 posts/photos
 users/pictures
 static/img/
+media/

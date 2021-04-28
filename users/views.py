@@ -44,6 +44,7 @@ def signup_view(request):
         return redirect("login") 
     return render(request, 'users/signup.html')
 
+@login_required
 def update_me_profile(request):
     profile = request.user.profile
     if request.method == 'POST':

@@ -10,11 +10,6 @@
             <div class="col-12 pr-0" id="proflie-box">
                 <form class="mt-4" action="{% url 'profile'%}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {% for field in form %}
-                        {% if field.errors %}
-                        <p class="alert alert-danger">{{ field.label }}: {{ field.errors|striptags }}</p>
-                        {% endif %}
-                    {% endfor %}
                     <div class="media">
                         {%if profile.picture %}
                             <img src="{{ profile.picture.url }}" class="rounded-circle" height="50" alt="Profile" />
@@ -23,29 +18,49 @@
                         {%endif %}
                         <div class="media-body">
                             <h5 class="ml-2">@{{user.username}} | {{user.first_name}} {{user.last_name}}</h5>
-                            <p class="ml-2"><input type="file" name="picture" style="font-family:none;" value="{{profile.picture}}"/></p>
+                            <p class="ml-2"><input type="file" name="picture" aria-label="file example"/></p>
+                                {%for error in form.picture.errors %}
+                                    <div class="alert alert-danger" style="width: fit-content;">
+                                        {{error}}
+                                    </div>
+                                {%endfor %}
                         </div>
                     </div>
                     <hr><br>
                     <div class="form-group">
                         <label>Website</label>
-                        <input class="form-control" type="url" name="website" placeholder="Website"  value="{{profile.website}}"/>
+                        <input class="form-control {%if form.website.errors %}is-invalid{%else %}is-valid{% endif %}" type="text" name="website" placeholder="Website" value="{%if form.errors%}{{form.website.value}}{%else %}{{profile.website}}{%endif %}"/>
+                        <div class="invalid-feedback alert alert-danger">
+                            {%for error in form.website.errors %}
+                                {{error}}
+                            {%endfor %}
+                        </div>
                     </div>
             
                     <div class="form-group">
                         <label>Biography</label>
-                        <textarea class="form-control" name="bio">{{ profile.bio }}</textarea>
+                        <textarea class="form-control {%if form.bio.errors %}is-invalid{%else %}is-valid{% endif %}" name="bio">{%if form.errors%}{{form.bio.value}}{%else %}{{profile.bio}}{%endif %}</textarea>
+                        <div class="invalid-feedback alert alert-danger">
+                            {%for error in form.bio.errors %}
+                                {{error}}
+                            {%endfor %}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Phone number</label>
                         <input
-                            class="form-control"
+                            class="form-control {%if form.phone_number.errors %}is-invalid{%else %}is-valid{% endif %}"
                             type="text"
                             name="phone_number"
                             placeholder="Phone number"
-                            value="{{ profile.phone_number }}"
+                            value="{%if form.errors%}{{form.phone_number.value}}{%else %}{{profile.phone_number}}{%endif %}"
                         />
+                        <div class="invalid-feedback alert alert-danger">
+                            {%for error in form.phone_number.errors %}
+                                {{error}}
+                            {%endfor %}
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-block my-5">Update info</button>
@@ -53,4 +68,5 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="{% static 'JS/update_profile'%}"> 
 {% endblock %}

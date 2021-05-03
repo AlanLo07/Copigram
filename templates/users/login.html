@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block container %}
-    <form method="post" action={% url "login"%}>
+    <form method="post" action={% url "users:login"%}>
         {% csrf_token %}
         <div class="form-group p-2">
             <input type="text" placeholder="Username" name="username" class="form-control form-control-lg" style="border-radius:1.5rem; background-color: rgba(52,199,182,.2);"/>
@@ -14,6 +14,7 @@
         </div>
         <button type="submit" class="btn btn-primary w-100 my-2 btn-lg" style="border-radius:1.5rem">Sig in</button>
     </form>
+    <p class="mt-4">Don't have an account yet? <a href={% url 'users:signup'%}>Sign up</a></p>
     {% if error %}
         <p class="alert alert-danger">{{ error }}</p>
     {%endif%}

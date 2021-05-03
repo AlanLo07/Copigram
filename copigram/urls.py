@@ -15,22 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls.static import static
-from django.urls import path
-from copigram import views as local_views
-from posts import views as posts_views
-from users import views as user_views
+from django.urls import path, include
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello-world/', local_views.hello_world, name='hello_world'),
-    path('numeros/',local_views.lista_ordenada, name='sort'),
-    path('saludar/<str:name>/', local_views.saludar,name='hi'),
-    path('',posts_views.list_posts,name='feed'),
-    path('post/new/',posts_views.create_post,name='new_post'),
-    path('users/login/',user_views.login_view,name='login'),
-    path('users/logout/',user_views.logout_view,name='logout'),
-    path('users/signup/',user_views.signup_view,name='signup'),
-    path('users/me/profile/',user_views.update_me_profile,name='profile'),
+    path('',include(('posts.urls','posts'),namespace='posts')),
+    path('users/',include(('users.urls','users'),namespace='users')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

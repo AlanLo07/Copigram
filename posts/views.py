@@ -12,8 +12,10 @@ from datetime import datetime
 @login_required
 def list_posts(request): 
     letra=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-    url=f'https://gateway.marvel.com:443/v1/public/characters?nameStartsWith={(letra[random.randint(0,len(letra)-1)])}&ts=1&apikey=f99464654a38463641f7054fb14ceac6&hash=c2170ac6676424c911d8a86ec74c1e07'
-    print(url)
+    url='https://gateway.marvel.com:443/v1/public/characters?nameStartsWith={hero}&ts=1&apikey=f99464654a38463641f7054fb14ceac6&hash=c2170ac6676424c911d8a86ec74c1e07'.format(hero=letra[random.randint(0,len(letra)-1)])
+    if request.method == 'GET':
+        Heroe=request.GET.get("Hero")
+    url='https://gateway.marvel.com:443/v1/public/characters?nameStartsWith={hero}&ts=1&apikey=f99464654a38463641f7054fb14ceac6&hash=c2170ac6676424c911d8a86ec74c1e07'.format(hero=Heroe)
     response = requests.get(url)
     publicaciones = response.json()['data']['results']
     return render(request,'posts/feed.html',{'posts': publicaciones})

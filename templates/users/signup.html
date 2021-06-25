@@ -24,6 +24,10 @@
             <input type="password" placeholder="Repeat password" name="password_confirmation" class=" form-control" style="border-radius:1.5rem; background-color: rgba(52,199,182,.2);" required="true" />
         </div>
         <button type="submit" class="btn btn-primary w-50 my-2 ml-2 btn-lg" style="border-radius:1.5rem">Sig up</button>
+        <a class="btn btn-primary btn-block mb-4" href="{% url 'social:begin' 'facebook' %}">
+            <span class="fab fa-facebook"></span>
+            Signup with facebook
+        </a>
     </form>
     {% if form.errors %}
         <p class="alert alert-danger">Error al llenar los datos</p>
